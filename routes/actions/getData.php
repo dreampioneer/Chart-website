@@ -17,6 +17,7 @@ header("Access-Control-Allow-Methods: PUT, POST, GET, OPTIONS, DELETE");
 
 
     $table = isset($_GET['table']) ? $_GET['table'] : 'SN1';
+    $time = isset($_GET['time']) ? $_GET['time'] : 0;
 
 
     $date = date('Y-m-d H:i:s');
@@ -35,21 +36,27 @@ header("Access-Control-Allow-Methods: PUT, POST, GET, OPTIONS, DELETE");
     $sensorRow = $sensorData->fetch_assoc();
     $sensorRow = explode(' ',$sensorRow['timestamp']);
     $sensorRow = $sensorRow[0];
+    $tentime = $time-60*10*1000;
 
 
-    if(isset($_GET['startDate']) && isset($_GET['endDate']) && $_GET['startDate'] != '' && $_GET['endDate'] != '') {
-      $sql = "select * from ".$table." WHERE timestamp BETWEEN '".$_GET['startDate']."' AND '".$_GET['endDate']."' ";
-    } else if(isset($_GET['startDate']) && !isset($_GET['endDate']) && $_GET['startDate'] != '') {
-      if(isset($_GET['table']) && isset($_GET['from']) && $_GET['to'] != '' && $_GET['table'] == $table) {
-        $sql = "select * from ".$table."  WHERE (timestamp BETWEEN DATE_SUB(NOW() , INTERVAL 30 SECOND) AND NOW()) AND (value BETWEEN '".$_GET['from']."' AND '".$_GET['to']."') ";
-      } else {
-        $sql = "select * from ".$table."  WHERE timestamp BETWEEN DATE_SUB(NOW() , INTERVAL 30 SECOND) AND NOW()";
-      }
-
-    } else if(isset($_GET['from']) && isset($_GET['to']) && $_GET['from'] != '' && $_GET['to'] != '') {
-      $sql = "select * from ".$table." WHERE value BETWEEN '".$_GET['from']."' AND '".$_GET['to']."' ORDER BY value ASC";
+    if(isset($_GET['time']) && $_GET['time'] != '') {
+      $sql = "select * from ".$table." WHERE timestamp BETWEEN '".$tentime."' AND '".$_GET['time']."' ";
     } else {
-      $sql = "select * from ".$table." WHERE DATE(timestamp) = '$sensorRow'";
+
+      if(isset($_GET['startDate']) && isset($_GET['endDate']) && $_GET['startDate'] != '' && $_GET['endDate'] != '') {
+        $sql = "select * from ".$table." WHERE timestamp BETWEEN '".$_GET['startDate']."' AND '".$_GET['endDate']."' ";
+      } else if(isset($_GET['startDate']) && !isset($_GET['endDate']) && $_GET['startDate'] != '') {
+        if(isset($_GET['table']) && isset($_GET['from']) && $_GET['to'] != '' && $_GET['table'] == $table) {
+          $sql = "select * from ".$table."  WHERE (timestamp BETWEEN DATE_SUB(NOW() , INTERVAL 30 SECOND) AND NOW()) AND (value BETWEEN '".$_GET['from']."' AND '".$_GET['to']."') ";
+        } else {
+          $sql = "select * from ".$table."  WHERE timestamp BETWEEN DATE_SUB(NOW() , INTERVAL 30 SECOND) AND NOW()";
+        }
+
+      } else if(isset($_GET['from']) && isset($_GET['to']) && $_GET['from'] != '' && $_GET['to'] != '') {
+        $sql = "select * from ".$table." WHERE value BETWEEN '".$_GET['from']."' AND '".$_GET['to']."' ORDER BY value ASC";
+      } else {
+        $sql = "select * from ".$table." WHERE DATE(timestamp) = '$sensorRow'";
+      }
     }
 
    // print_r($sql); die();

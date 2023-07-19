@@ -17,396 +17,842 @@ $mysql->init_conn();
 
 ?>
 
+<style>
+  .container {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    font-family: Arial, sans-serif;
+    margin-top: 50px;
+  }
+
+  h2 {
+    margin-bottom: 20px;
+  }
+
+  select,
+  input {
+    width: 23%;
+    margin: 1%;
+    padding: 10px;
+    border: 2px solid #ccc;
+    border-radius: 5px;
+    font-size: 16px;
+    transition: border-color 0.3s ease;
+  }
+
+  select {
+    width: 200px;
+    margin-bottom: 20px;
+    margin-right: 20px;
+  }
+
+  input {
+    margin-bottom: 20px;
+  }
+
+  select:focus,
+  input:focus {
+    outline: none;
+    border-color: dodgerblue;
+    box-shadow: 0 0 5px dodgerblue;
+  }
+
+  #daterange {
+    transition: height 0.5s ease;
+    margin-right: 10px;
+  }
+
+  .hidden {
+    height: 0;
+  }
+
+  @keyframes slideInFromLeft {
+    from {
+      transform: translateX(-100%);
+      opacity: 0;
+    }
+    to {
+      transform: translateX(0);
+      opacity: 1;
+    }
+  }
+
+  .container {
+    animation: slideInFromLeft 1s ease;
+    justify-content: center;
+    align-items: center;
+  }
+
+  .canvas_containar {
+    display: flex;
+    /* justify-content: center;
+    align-items: center; */
+    display: flex;
+    flex-wrap: wrap;
+  }
+
+  .chartjs-size-monitor {
+    animation: slideInFromLeft 1s ease;
+    justify-content: center;
+    align-items: center;
+  }
+
+  .chart {
+    width: 50%;
+    box-sizing: border-box;
+    animation: slideInFromLeft 2s ease;
+    justify-content: center;
+    align-items: center;
+  }
+
+  canvas {
+    max-width: 90%;
+    max-height: 100%;
+    justify-content: center;
+    align-items: center;
+  }
+
+  canvas {
+    background-color: lightgray;
+    border-radius: 5px;
+    box-shadow: 0 0 5px rgba(0, 0, 0, 0.3);
+    justify-content: center;
+    align-items: center;
+    margin-left: 5%;
+    margin-bottom: 30px;
+  }
+
+  .topsearch {
+    display: flex;
+    margin-top: 50px;
+    margin-left: 50px;
+  }
+
+  .label-container {
+    display: flex;
+    margin: 30px;
+    flex-wrap: wrap;
+    justify-content: center;
+    align-items: center;
+  }
+
+  .label {
+    width: 20%;
+    box-sizing: border-box;
+    justify-content: center;
+    align-items: center;
+  }
+
+  label {
+    display: block !important;
+  }
+
+  .condition {
+    display: flex;
+  }
+</style>
+
 <body class="">
-    <div class="wrapper ">
-        <?php //include('./layouts/sidebar.php');?>
-        <div class="main-panel">
-            <!-- Navbar -->
-            <?php include('./layouts/nav.php');?>
-
-            <!-- End Navbar -->
-            <div class="content">
-                <div class="container-fluid">
-                    <div class="row">
-                        <div class="col-xl-12 order-xl-1">
-                            <div class="card">
-                                <!-- <div class="card-header">
-
-                                    <div class="row align-items-center">
-                                        <div class="col-12 p-3">
-
-                                        </div>
-                                    </div>
-
-                                    <div class="row align-items-center">
-                                        <div class="col-12">
-                                            <h3 class="mb-0 text-center">Sensor Reports</h3>
-                                        </div>
-                                    </div>
-                                </div> -->
-                                <div class="card-body">
-
-
-
-                                  <div class="row">
-                                      <div class="col-xl-12 order-xl-1">
-                                          <div class="card">
-
-                                                <div class="row">
-
-                                                  <div class="col-lg-6 col-md-6 col-sm-6">
-
-                                                        <div class="card-body">
-                                                          <div class="">
-                                                            <label for="sel1">Sensor Type:</label>
-                                                            <select class="form-control" id="sel1">
-                                                              <option value="http://trinityaether.com/sensor/routes/reports.php" selected>Fixed</option>
-                                                              <option value="http://trinityaether.com/sensor/routes/realtime.php" >Real Type</option>
-                                                                                                                        </select>
-                                                          </div>
-                                                        </div>
-
-                                                  </div>
-
-                                                  <div class="col-lg-6 col-md-6 col-sm-12">
-
-                                                        <div class="card-body">
-                                                          <p>Select Sensor </p>
-                                                          <div class="form-check">
-                                                              <label class="">
-                                                                <input name="chk1" class="check_box m-2" type="checkbox" data-ptag="sb1" id="chk1" value="" >Sensor 1
-                                                              </label>
-                                                              <label class="">
-                                                                <input name="chk2" class="check_box m-2" type="checkbox" data-ptag="sb2" id="chk2" value="" >Sensor 2
-                                                              </label>
-                                                              <label class="">
-                                                                <input name="chk3" class="check_box m-2" type="checkbox" data-ptag="sb3" id="chk3" value="" >Sensor 3
-                                                              </label>
-                                                              <label class="">
-                                                                <input name="chk4" class="check_box m-2" type="checkbox" data-ptag="sb4" id="chk4" value="" >Sensor 4
-                                                              </label>
-                                                              <label class="">
-                                                                <input name="chk5" class="check_box m-2" type="checkbox" data-ptag="sb5" id="chk5" value="" >Sensor 5
-                                                              </label>
-                                                              <label class="">
-                                                                <input name="chk6" class="check_box m-2" type="checkbox" data-ptag="sb6" id="chk6" value="" >Sensor 6
-                                                              </label>
-                                                              <label class="">
-                                                                <input name="chk7" class="check_box m-2" type="checkbox" data-ptag="sb7" id="chk7" value="" >Sensor 7
-                                                              </label>
-                                                              <label class="">
-                                                                <input name="chk8" class="check_box m-2" type="checkbox" data-ptag="sb8" id="chk8" value="" >Sensor 8
-                                                              </label>
-                                                              <label class="">
-                                                                <input name="chk9" class="check_box m-2" type="checkbox" data-ptag="sb9" id="chk9" value="" >Sensor 9
-                                                              </label>
-                                                              <label class="">
-                                                                <input name="chk10" class="check_box m-2" type="checkbox" data-ptag="sb10" id="chk10" value="" >Sensor 10
-                                                              </label>
-                                                          </div>
-
-                                                        </div>
-
-                                                  </div>
-
-                                                </div>
-
-
-                                    </div>
-
-                                  </div>
-
-                                </div>
-
-
-
-
-
-
-                        <div class="row">
-
-
-                      <div class="col-lg-6 col-md-6 col-sm-6 p_element" id="sb1">
-                        <div class="card card-stats">
-                          <div class="card-header card-header-warning card-header-icon">
-                            <!-- <h3 class="card-title pt-2">Sensor 1</h3> -->
-                          </div>
-                            <div class="card-body">
-                              <div id="chartContainer1" style="height: 370px;"></div>
-                            </div>
-                          <div class="card-footer">
-                            <div class="stats">
-                              <a href="#myModal1" role="button" class="btn  btn-danger" data-toggle="modal">Select Date and Time Range</a>
-                              <a href="#myyaxisModal1" role="button" class="btn  btn-danger" data-toggle="modal">Select Values</a>
-                            </div>
-                          </div>
-                        </div>
-                      </div>
-
-
-                      <div class="col-lg-6 col-md-6 col-sm-6 p_element" id="sb2">
-                        <div class="card card-stats">
-                          <div class="card-header card-header-warning card-header-icon">
-                            <!-- <h3 class="card-title pt-2">Sensor 2</h3> -->
-                          </div>
-                            <div class="card-body">
-                              <div id="chartContainer2" style="height: 370px;"></div>
-                            </div>
-                          <div class="card-footer">
-                            <div class="stats">
-                              <a href="#myModal2" role="button" class="btn  btn-danger" data-toggle="modal">Select Date and Time Range</a>
-                                <a href="#myyaxisModal2" role="button" class="btn  btn-danger" data-toggle="modal">Select Values</a>
-                            </div>
-                          </div>
-                        </div>
-                      </div>
-
-
-                      <div class="col-lg-6 col-md-6 col-sm-6 p_element" id="sb3">
-                        <div class="card card-stats">
-                          <div class="card-header card-header-warning card-header-icon">
-                            <!-- <h3 class="card-title pt-2">Sensor 3</h3> -->
-                          </div>
-                            <div class="card-body">
-                              <div id="chartContainer3" style="height: 370px;"></div>
-                            </div>
-                          <div class="card-footer">
-                            <div class="stats">
-                              <a href="#myModal3" role="button" class="btn  btn-danger" data-toggle="modal">Select Date and Time Range</a>
-                                <a href="#myyaxisModal3" role="button" class="btn  btn-danger" data-toggle="modal">Select Values</a>
-                            </div>
-                          </div>
-                        </div>
-                      </div>
-
-
-                      <div class="col-lg-6 col-md-6 col-sm-6 p_element" id="sb4">
-                        <div class="card card-stats">
-                          <div class="card-header card-header-warning card-header-icon">
-                            <!-- <h3 class="card-title pt-2">Sensor 4</h3> -->
-                          </div>
-                            <div class="card-body">
-                              <div id="chartContainer4" style="height: 370px;"></div>
-                            </div>
-                          <div class="card-footer">
-                            <div class="stats">
-                              <a href="#myModal4" role="button" class="btn  btn-danger" data-toggle="modal">Select Date and Time Range</a>
-                                <a href="#myyaxisModal4" role="button" class="btn  btn-danger" data-toggle="modal">Select Values</a>
-                            </div>
-                          </div>
-                        </div>
-                      </div>
-
-                      <div class="col-lg-6 col-md-6 col-sm-6 p_element" id="sb5">
-                        <div class="card card-stats">
-                          <div class="card-header card-header-warning card-header-icon">
-                            <!-- <h3 class="card-title pt-2">Sensor 5</h3> -->
-                          </div>
-                            <div class="card-body">
-                              <div id="chartContainer5" style="height: 370px;"></div>
-                            </div>
-                          <div class="card-footer">
-                            <div class="stats">
-                              <a href="#myModal5" role="button" class="btn  btn-danger" data-toggle="modal">Select Date and Time Range</a>
-                                <a href="#myyaxisModal5" role="button" class="btn  btn-danger" data-toggle="modal">Select Values</a>
-                            </div>
-                          </div>
-                        </div>
-                      </div>
-
-
-                      <div class="col-lg-6 col-md-6 col-sm-6 p_element" id="sb6">
-                        <div class="card card-stats">
-                          <div class="card-header card-header-warning card-header-icon">
-                            <!-- <h3 class="card-title pt-2">Sensor 6</h3> -->
-                          </div>
-                            <div class="card-body">
-                              <div id="chartContainer6" style="height: 370px;"></div>
-                            </div>
-                          <div class="card-footer">
-                            <div class="stats">
-                              <a href="#myModal6" role="button" class="btn  btn-danger" data-toggle="modal">Select Date and Time Range</a>
-                                <a href="#myyaxisModal6" role="button" class="btn  btn-danger" data-toggle="modal">Select Values</a>
-                            </div>
-                          </div>
-                        </div>
-                      </div>
-
-
-                      <div class="col-lg-6 col-md-6 col-sm-6 p_element" id="sb7">
-                        <div class="card card-stats">
-                          <div class="card-header card-header-warning card-header-icon">
-                            <!-- <h3 class="card-title pt-2">Sensor 7</h3> -->
-                          </div>
-                            <div class="card-body">
-                              <div id="chartContainer7" style="height: 370px;"></div>
-                            </div>
-                          <div class="card-footer">
-                            <div class="stats">
-                              <a href="#myModal7" role="button" class="btn  btn-danger" data-toggle="modal">Select Date and Time Range</a>
-                                <a href="#myyaxisModal7" role="button" class="btn  btn-danger" data-toggle="modal">Select Values</a>
-                            </div>
-                          </div>
-                        </div>
-                      </div>
-
-
-                      <div class="col-lg-6 col-md-6 col-sm-6 p_element" id="sb8">
-                        <div class="card card-stats">
-                          <div class="card-header card-header-warning card-header-icon">
-                            <!-- <h3 class="card-title pt-2">Sensor 8</h3> -->
-                          </div>
-                            <div class="card-body">
-                              <div id="chartContainer8" style="height: 370px;"></div>
-                            </div>
-                          <div class="card-footer">
-                            <div class="stats">
-                              <a href="#myModal8" role="button" class="btn  btn-danger" data-toggle="modal">Select Date and Time Range</a>
-                                <a href="#myyaxisModal8" role="button" class="btn  btn-danger" data-toggle="modal">Select Values</a>
-                            </div>
-                          </div>
-                        </div>
-                      </div>
-
-                      <div class="col-lg-6 col-md-6 col-sm-6 p_element" id="sb9">
-                        <div class="card card-stats">
-                          <div class="card-header card-header-warning card-header-icon">
-                            <!-- <h3 class="card-title pt-2">Sensor 9</h3> -->
-                          </div>
-                            <div class="card-body">
-                              <div id="chartContainer9" style="height: 370px;"></div>
-                            </div>
-                          <div class="card-footer">
-                            <div class="stats">
-                              <a href="#myModal9" role="button" class="btn  btn-danger" data-toggle="modal">Select Date and Time Range</a>
-                                <a href="#myyaxisModal9" role="button" class="btn  btn-danger" data-toggle="modal">Select Values</a>
-                            </div>
-                          </div>
-                        </div>
-                      </div>
-
-
-                      <div class="col-lg-6 col-md-6 col-sm-6 p_element" id="sb10">
-                        <div class="card card-stats">
-                          <div class="card-header card-header-warning card-header-icon">
-                            <!-- <h3 class="card-title pt-2">Sensor 9</h3> -->
-                          </div>
-                            <div class="card-body">
-                              <div id="chartContainer10" style="height: 370px;"></div>
-                            </div>
-                          <div class="card-footer">
-                            <div class="stats">
-                              <a href="#myModal10" role="button" class="btn  btn-danger" data-toggle="modal">Select Date and Time Range</a>
-                                <a href="#myyaxisModal10" role="button" class="btn  btn-danger" data-toggle="modal">Select Values</a>
-                            </div>
-                          </div>
-                        </div>
-                      </div>
-
-
-
-
-
-            </div>
-
-
-          <?php     for($i=1; $i<=10; $i++) { ?>
-
-
-            <!-- The Modal -->
-            <div class="modal" id="myModal<?php echo $i?>">
-              <div class="modal-dialog">
-                <div class="modal-content">
-
-                  <!-- Modal Header -->
-                  <div class="modal-header">
-                    <h4 class="modal-title">Date Time Picker</h4>
-                    <button type="button" class="close" data-dismiss="modal">&times;</button>
-                  </div>
-
-                  <!-- Modal body -->
-                  <div class="modal-body">
-                    <div>
-                      <input type='datetime' class="form-control" id="datetimepicker_<?php echo $i?>" name="datetime1[]" placeholder="Start Date and Time..." />
-                      <input type='datetime' class="form-control mt-2" id="datetimepicker_1_<?php echo $i?>" name="datetime2[]" placeholder="End Date and Time..." />
-                      <button type="button" class="btn btn-success dateSubmit" id="dateSubmit<?php echo $i?>">SUBMIT</button>
-                    </div>
-
-                  </div>
-
-                  <!-- Modal footer -->
-                  <div class="modal-footer">
-                    <button type="button" class="btn btn-danger" data-dismiss="modal">Close</button>
-                  </div>
-
-                </div>
-              </div>
-            </div>
-
-
-         <?php } ?>
-
-
-
-                   <?php     for($i=1; $i<=10; $i++) { ?>
-
-
-                     <!-- The Modal -->
-                     <div class="modal" id="myyaxisModal<?php echo $i?>">
-                       <div class="modal-dialog">
-                         <div class="modal-content">
-
-                           <!-- Modal Header -->
-                           <div class="modal-header">
-                             <h4 class="modal-title">Y axis values</h4>
-                             <button type="button" class="close" data-dismiss="modal">&times;</button>
-                           </div>
-
-                           <!-- Modal body -->
-                           <div class="modal-body">
-                             <div>
-                               <input type='text' class="form-control" id="from_<?php echo $i?>" name="from[]" placeholder="Start value..." />
-                               <input type='text' class="form-control mt-2" id="to_<?php echo $i?>" name="to[]" placeholder="End value..." />
-                               <button type="button" class="btn btn-success yaxisSubmit" id="yaxisSubmit<?php echo $i?>">SUBMIT</button>
-                             </div>
-
-                           </div>
-
-                           <!-- Modal footer -->
-                           <div class="modal-footer">
-                             <button type="button" class="btn btn-danger" data-dismiss="modal">Close</button>
-                           </div>
-
-                         </div>
-                       </div>
-                     </div>
-
-
-                  <?php } ?>
-
-
-
-
-                                </div>
-                            </div>
-                        </div>
-
-                    </div>
-                </div>
-            </div>
-            <footer class="footer">
-                <div class="container-fluid">
-                    <div class="copyright float-right">
-                        &copy;
-                        <script>
-                            document.write(new Date().getFullYear())
-                        </script><i class="material-icons"></i>
-                        <a href="#" target="_blank"></a>
-                    </div>
-                </div>
-            </footer>
-        </div>
+  <div class="topsearch">
+    <select id="mySelect">
+      <option value="0">Select Type</option>
+      <option value="1">Fixed</option>
+      <option value="2" selected>Real Time</option>
+    </select>
+  </div>
+  <div id="real-time">
+    <div class="label-container">
+      <div class="label">
+        <label class="checkbox1">
+          <input type="checkbox" id="checkbox1" checked />
+          <span class="custom-checkbox"></span>
+          Sensor1
+        </label>
+      </div>
+      <div class="label">
+        <label class="checkbox2">
+          <input type="checkbox" id="checkbox2" checked />
+          <span class="custom-checkbox"></span>
+          Sensor2
+        </label>
+      </div>
+      <div class="label">
+        <label class="checkbox3">
+          <input type="checkbox" id="checkbox3" checked />
+          <span class="custom-checkbox"></span>
+          Sensor3
+        </label>
+      </div>
+      <div class="label">
+        <label class="checkbox4">
+          <input type="checkbox" id="checkbox4" checked />
+          <span class="custom-checkbox"></span>
+          Sensor4
+        </label>
+      </div>
+      <div class="label">
+        <label class="checkbox5">
+          <input type="checkbox" id="checkbox5" checked />
+          <span class="custom-checkbox"></span>
+          Sensor5
+        </label>
+      </div>
+      <div class="label">
+        <label class="checkbox6">
+          <input type="checkbox" id="checkbox6" checked />
+          <span class="custom-checkbox"></span>
+          Sensor6
+        </label>
+      </div>
+      <div class="label">
+        <label class="checkbox7">
+          <input type="checkbox" id="checkbox7" checked />
+          <span class="custom-checkbox"></span>
+          Sensor7
+        </label>
+      </div>
+      <div class="label">
+        <label class="checkbox8">
+          <input type="checkbox" id="checkbox8" checked />
+          <span class="custom-checkbox"></span>
+          Sensor8
+        </label>
+      </div>
+      <div class="label">
+        <label class="checkbox9">
+          <input type="checkbox" id="checkbox9" checked />
+          <span class="custom-checkbox"></span>
+          Sensor9
+        </label>
+      </div>
+      <div class="label">
+        <label class="checkbox10">
+          <input type="checkbox" id="checkbox10" checked />
+          <span class="custom-checkbox"></span>
+          Sensor10
+        </label>
+      </div>
     </div>
+    <div class="canvas_containar">
+      <div class="chart" id="chart1">
+        <canvas id="myChart1"></canvas>
+        <div class="condition">
+          <input
+            type="text"
+            id="datetimepickerstart1"
+            placeholder="Select a start date and time"
+          />
+          <input
+            type="text"
+            id="datetimepickerend1"
+            placeholder="Select a end date and time"
+          />
+          <input
+            type="text"
+            id="minValue1"
+            onchange="setMinValue(1)"
+            placeholder="Input Min Value"
+          />
+          <input
+            type="text"
+            id="maxValue1"
+            onchange="setMaxValue(1)"
+            placeholder="Input Max Value"
+          />
+        </div>
+      </div>
+      <div class="chart" id="chart2">
+        <canvas id="myChart2"></canvas>
+        <div class="condition">
+          <input
+            type="text"
+            id="datetimepickerstart2"
+            placeholder="Select a start date and time"
+          />
+          <input
+            type="text"
+            id="datetimepickerend2"
+            placeholder="Select a end date and time"
+          />
+          <input
+            type="text"
+            id="minValue2"
+            onchange="setMinValue(2)"
+            placeholder="Input Min Value"
+          />
+          <input
+            type="text"
+            id="maxValue2"
+            onchange="setMaxValue(2)"
+            placeholder="Input Max Value"
+          />
+        </div>
+      </div>
+      <div class="chart" id="chart3">
+        <canvas id="myChart3"></canvas>
+        <div class="condition">
+          <input
+            type="text"
+            id="datetimepickerstart3"
+            placeholder="Select a start date and time"
+          />
+          <input
+            type="text"
+            id="datetimepickerend3"
+            placeholder="Select a end date and time"
+          />
+          <input
+            type="text"
+            id="minValue3"
+            onchange="setMinValue(3)"
+            placeholder="Input Min Value"
+          />
+          <input
+            type="text"
+            id="maxValue3"
+            onchange="setMaxValue(3)"
+            placeholder="Input Max Value"
+          />
+        </div>
+      </div>
+      <div class="chart" id="chart4">
+        <canvas id="myChart4"></canvas>
+        <div class="condition">
+          <input
+            type="text"
+            id="datetimepickerstart4"
+            placeholder="Select a start date and time"
+          />
+          <input
+            type="text"
+            id="datetimepickerend4"
+            placeholder="Select a end date and time"
+          />
+          <input
+            type="text"
+            id="minValue4"
+            onchange="setMinValue(4)"
+            placeholder="Input Min Value"
+          />
+          <input
+            type="text"
+            id="maxValue4"
+            onchange="setMaxValue(4)"
+            placeholder="Input Max Value"
+          />
+        </div>
+      </div>
+      <div class="chart" id="chart5">
+        <canvas id="myChart5"></canvas>
+        <div class="condition">
+          <input
+            type="text"
+            id="datetimepickerstart5"
+            placeholder="Select a start date and time"
+          />
+          <input
+            type="text"
+            id="datetimepickerend5"
+            placeholder="Select a end date and time"
+          />
+          <input
+            type="text"
+            id="minValue5"
+            onchange="setMinValue(5)"
+            placeholder="Input Min Value"
+          />
+          <input
+            type="text"
+            id="maxValue5"
+            onchange="setMaxValue(5)"
+            placeholder="Input Max Value"
+          />
+        </div>
+      </div>
+      <div class="chart" id="chart6">
+        <canvas id="myChart6"></canvas>
+        <div class="condition">
+          <input
+            type="text"
+            id="datetimepickerstart6"
+            placeholder="Select a start date and time"
+          />
+          <input
+            type="text"
+            id="datetimepickerend6"
+            placeholder="Select a end date and time"
+          />
+          <input
+            type="text"
+            id="minValue6"
+            onchange="setMinValue(6)"
+            placeholder="Input Min Value"
+          />
+          <input
+            type="text"
+            id="maxValue6"
+            onchange="setMaxValue(6)"
+            placeholder="Input Max Value"
+          />
+        </div>
+      </div>
+      <div class="chart" id="chart7">
+        <canvas id="myChart7"></canvas>
+        <div class="condition">
+          <input
+            type="text"
+            id="datetimepickerstart7"
+            placeholder="Select a start date and time"
+          />
+          <input
+            type="text"
+            id="datetimepickerend7"
+            placeholder="Select a end date and time"
+          />
+          <input
+            type="text"
+            id="minValue7"
+            onchange="setMinValue(7)"
+            placeholder="Input Min Value"
+          />
+          <input
+            type="text"
+            id="maxValue7"
+            onchange="setMaxValue(7)"
+            placeholder="Input Max Value"
+          />
+        </div>
+      </div>
+      <div class="chart" id="chart8">
+        <canvas id="myChart8"></canvas>
+        <div class="condition">
+          <input
+            type="text"
+            id="datetimepickerstart8"
+            placeholder="Select a start date and time"
+          />
+          <input
+            type="text"
+            id="datetimepickerend8"
+            placeholder="Select a end date and time"
+          />
+          <input
+            type="text"
+            id="minValue8"
+            onchange="setMinValue(8)"
+            placeholder="Input Min Value"
+          />
+          <input
+            type="text"
+            id="maxValue8"
+            onchange="setMaxValue(8)"
+            placeholder="Input Max Value"
+          />
+        </div>
+      </div>
+      <div class="chart" id="chart9">
+        <canvas id="myChart9"></canvas>
+        <div class="condition">
+          <input
+            type="text"
+            id="datetimepickerstart10"
+            placeholder="Select a start date and time"
+          />
+          <input
+            type="text"
+            id="datetimepickerend10"
+            placeholder="Select a end date and time"
+          />
+          <input
+            type="text"
+            id="minValue9"
+            onchange="setMinValue(9)"
+            placeholder="Input Min Value"
+          />
+          <input
+            type="text"
+            id="maxValue9"
+            onchange="setMaxValue(9)"
+            placeholder="Input Max Value"
+          />
+        </div>
+      </div>
+      <div class="chart" id="chart10">
+        <canvas id="myChart10"></canvas>
+        <div class="condition">
+          <input
+            type="text"
+            id="datetimepicker1"
+            placeholder="Select a start date and time"
+          />
+          <input
+            type="text"
+            id="datetimepicker2"
+            placeholder="Select a end date and time"
+          />
+          <input
+            type="text"
+            id="minValue10"
+            onchange="setMinValue(10)"
+            placeholder="Input Min Value"
+          />
+          <input
+            type="text"
+            id="maxValue10"
+            onchange="setMaxValue(10)"
+            placeholder="Input Max Value"
+          />
+        </div>
+      </div>
+    </div>
+  </div>
+  <div id="fixed-time">
+  <div class="label-container">
+      <div class="label">
+        <label class="checkbox1">
+          <input type="checkbox" id="fixedcheckbox1" checked />
+          <span class="custom-checkbox"></span>
+          Sensor1
+        </label>
+      </div>
+      <div class="label">
+        <label class="checkbox2">
+          <input type="checkbox" id="fixedcheckbox2" checked />
+          <span class="custom-checkbox"></span>
+          Sensor2
+        </label>
+      </div>
+      <div class="label">
+        <label class="checkbox3">
+          <input type="checkbox" id="fixedcheckbox3" checked />
+          <span class="custom-checkbox"></span>
+          Sensor3
+        </label>
+      </div>
+      <div class="label">
+        <label class="checkbox4">
+          <input type="checkbox" id="fixedcheckbox4" checked />
+          <span class="custom-checkbox"></span>
+          Sensor4
+        </label>
+      </div>
+      <div class="label">
+        <label class="checkbox5">
+          <input type="checkbox" id="fixedcheckbox5" checked />
+          <span class="custom-checkbox"></span>
+          Sensor5
+        </label>
+      </div>
+      <div class="label">
+        <label class="checkbox6">
+          <input type="checkbox" id="fixedcheckbox6" checked />
+          <span class="custom-checkbox"></span>
+          Sensor6
+        </label>
+      </div>
+      <div class="label">
+        <label class="checkbox7">
+          <input type="checkbox" id="fixedcheckbox7" checked />
+          <span class="custom-checkbox"></span>
+          Sensor7
+        </label>
+      </div>
+      <div class="label">
+        <label class="checkbox8">
+          <input type="checkbox" id="fixedcheckbox8" checked />
+          <span class="custom-checkbox"></span>
+          Sensor8
+        </label>
+      </div>
+      <div class="label">
+        <label class="checkbox9">
+          <input type="checkbox" id="fixedcheckbox9" checked />
+          <span class="custom-checkbox"></span>
+          Sensor9
+        </label>
+      </div>
+      <div class="label">
+        <label class="checkbox10">
+          <input type="checkbox" id="fixedcheckbox10" checked />
+          <span class="custom-checkbox"></span>
+          Sensor10
+        </label>
+      </div>
+    </div>
+    <div class="canvas_containar">
+      <div class="chart" id="fixedchart1">
+        <canvas id="myfixedChart1"></canvas>
+        <div class="condition">
+          <input
+            type="text"
+            id="datetimepickerstart1"
+            placeholder="Select a start date and time"
+          />
+          <input
+            type="text"
+            id="datetimepickerend1"
+            placeholder="Select a end date and time"
+          />
+          <input
+            type="text"
+            id="minValue1"
+            onchange="setMinValue(1)"
+            placeholder="Input Min Value"
+          />
+          <input
+            type="text"
+            id="maxValue1"
+            onchange="setMaxValue(1)"
+            placeholder="Input Max Value"
+          />
+        </div>
+      </div>
+      <div class="chart" id="fixedchart2">
+        <canvas id="myfixedChart2"></canvas>
+        <div class="condition">
+          <input
+            type="text"
+            id="datetimepickerstart2"
+            placeholder="Select a start date and time"
+          />
+          <input
+            type="text"
+            id="datetimepickerend2"
+            placeholder="Select a end date and time"
+          />
+          <input
+            type="text"
+            id="minValue2"
+            onchange="setMinValue(2)"
+            placeholder="Input Min Value"
+          />
+          <input
+            type="text"
+            id="maxValue2"
+            onchange="setMaxValue(2)"
+            placeholder="Input Max Value"
+          />
+        </div>
+      </div>
+      <div class="chart" id="fixedchart3">
+        <canvas id="myfixedChart3"></canvas>
+        <div class="condition">
+          <input
+            type="text"
+            id="datetimepickerstart3"
+            placeholder="Select a start date and time"
+          />
+          <input
+            type="text"
+            id="datetimepickerend3"
+            placeholder="Select a end date and time"
+          />
+          <input
+            type="text"
+            id="minValue3"
+            onchange="setMinValue(3)"
+            placeholder="Input Min Value"
+          />
+          <input
+            type="text"
+            id="maxValue3"
+            onchange="setMaxValue(3)"
+            placeholder="Input Max Value"
+          />
+        </div>
+      </div>
+      <div class="chart" id="fixedchart4">
+        <canvas id="myfixedChart4"></canvas>
+        <div class="condition">
+          <input
+            type="text"
+            id="datetimepickerstart4"
+            placeholder="Select a start date and time"
+          />
+          <input
+            type="text"
+            id="datetimepickerend4"
+            placeholder="Select a end date and time"
+          />
+          <input
+            type="text"
+            id="minValue4"
+            onchange="setMinValue(4)"
+            placeholder="Input Min Value"
+          />
+          <input
+            type="text"
+            id="maxValue4"
+            onchange="setMaxValue(4)"
+            placeholder="Input Max Value"
+          />
+        </div>
+      </div>
+      <div class="chart" id="fixedchart5">
+        <canvas id="myfixedChart5"></canvas>
+        <div class="condition">
+          <input
+            type="text"
+            id="datetimepickerstart5"
+            placeholder="Select a start date and time"
+          />
+          <input
+            type="text"
+            id="datetimepickerend5"
+            placeholder="Select a end date and time"
+          />
+          <input
+            type="text"
+            id="minValue5"
+            onchange="setMinValue(5)"
+            placeholder="Input Min Value"
+          />
+          <input
+            type="text"
+            id="maxValue5"
+            onchange="setMaxValue(5)"
+            placeholder="Input Max Value"
+          />
+        </div>
+      </div>
+      <div class="chart" id="fixedchart6">
+        <canvas id="myfixedChart6"></canvas>
+        <div class="condition">
+          <input
+            type="text"
+            id="datetimepickerstart6"
+            placeholder="Select a start date and time"
+          />
+          <input
+            type="text"
+            id="datetimepickerend6"
+            placeholder="Select a end date and time"
+          />
+          <input
+            type="text"
+            id="minValue6"
+            onchange="setMinValue(6)"
+            placeholder="Input Min Value"
+          />
+          <input
+            type="text"
+            id="maxValue6"
+            onchange="setMaxValue(6)"
+            placeholder="Input Max Value"
+          />
+        </div>
+      </div>
+      <div class="chart" id="fixedchart7">
+        <canvas id="myfixedChart7"></canvas>
+        <div class="condition">
+          <input
+            type="text"
+            id="datetimepickerstart7"
+            placeholder="Select a start date and time"
+          />
+          <input
+            type="text"
+            id="datetimepickerend7"
+            placeholder="Select a end date and time"
+          />
+          <input
+            type="text"
+            id="minValue7"
+            onchange="setMinValue(7)"
+            placeholder="Input Min Value"
+          />
+          <input
+            type="text"
+            id="maxValue7"
+            onchange="setMaxValue(7)"
+            placeholder="Input Max Value"
+          />
+        </div>
+      </div>
+      <div class="chart" id="fixedchart8">
+        <canvas id="myfixedChart8"></canvas>
+        <div class="condition">
+          <input
+            type="text"
+            id="datetimepickerstart8"
+            placeholder="Select a start date and time"
+          />
+          <input
+            type="text"
+            id="datetimepickerend8"
+            placeholder="Select a end date and time"
+          />
+          <input
+            type="text"
+            id="minValue8"
+            onchange="setMinValue(8)"
+            placeholder="Input Min Value"
+          />
+          <input
+            type="text"
+            id="maxValue8"
+            onchange="setMaxValue(8)"
+            placeholder="Input Max Value"
+          />
+        </div>
+      </div>
+      <div class="chart" id="fixedchart9">
+        <canvas id="myfixedChart9"></canvas>
+        <div class="condition">
+          <input
+            type="text"
+            id="datetimepickerstart10"
+            placeholder="Select a start date and time"
+          />
+          <input
+            type="text"
+            id="datetimepickerend10"
+            placeholder="Select a end date and time"
+          />
+          <input
+            type="text"
+            id="minValue9"
+            onchange="setMinValue(9)"
+            placeholder="Input Min Value"
+          />
+          <input
+            type="text"
+            id="maxValue9"
+            onchange="setMaxValue(9)"
+            placeholder="Input Max Value"
+          />
+        </div>
+      </div>
+      <div class="chart" id="fixedchart10">
+        <canvas id="myfixedChart10"></canvas>
+        <div class="condition">
+          <input
+            type="text"
+            id="datetimepicker1"
+            placeholder="Select a start date and time"
+          />
+          <input
+            type="text"
+            id="datetimepicker2"
+            placeholder="Select a end date and time"
+          />
+          <input
+            type="text"
+            id="minValue10"
+            onchange="setMinValue(10)"
+            placeholder="Input Min Value"
+          />
+          <input
+            type="text"
+            id="maxValue10"
+            onchange="setMaxValue(10)"
+            placeholder="Input Max Value"
+          />
+        </div>
+      </div>
+    </div>
+  </div>
     <?php include('./layouts/footer.php');?>
 
 
@@ -416,224 +862,283 @@ $mysql->init_conn();
 
 
 <script type="text/javascript">
-window.onload = function () {
-
-for(var i=1; i<=10; i++) {
-  var newChart = 'chart'+i;
-  newChart = new CanvasJS.Chart("chartContainer"+i, {
-    theme: "light2", // "light1", "light2", "dark1", "dark2"
-    animationEnabled: true,
-    zoomEnabled: true,
-    title: {
-      text: "Sensor "+i
-    },
-    axisY: {
-      title: "Value",
-      minimum: 0,
-      maximum: 500,
-      interval: 50
-    },
-  data: [{
-      type: "line",
-      dataPoints: []
-    }]
+  $(document).ready(function () {
+    initializeDateTimePickers();
+    $("#fixed-time").hide();
   });
 
-
-  $.ajax({
-  url: "./actions/getData.php",
-  dataType: 'json',
-  async: false,
-  data: { table: "SN"+i},
-  success: function(data) {
-    var newdate = '';
-    $.each((data), function(key, value){
-      newChart.options.data[0].dataPoints.push({label: value[0], y: parseInt(value[1])});
-      newdate = value[2];
-    });
-
-    newChart.render();
-    newChart.axisX[0].set("title", newdate, true);
+  function initializeDateTimePickers() {
+    $(
+      "[id^='datetimepickerstart'], [id^='datetimepickerend']"
+    ).datetimepicker();
   }
-});
 
+  function setMinValue(chartNumber) {
+    let min = $("#minValue" + chartNumber).val();
+    window["config" + chartNumber].options.scales.yAxes[0].ticks.min =
+      parseInt(min);
+  }
 
+  function setMaxValue(chartNumber) {
+    let max = $("#maxValue" + chartNumber).val();
+    window["config" + chartNumber].options.scales.yAxes[0].ticks.max =
+      parseInt(max);
+  }
 
-}
+  $("#mySelect").change(function () {
+    var selectedOption = $(this).val();
+    if (selectedOption == 1) {
+      $("#real-time").hide();
+      $("#fixed-time").show();
+    } else {
+      $("#real-time").show();
+      $("#fixed-time").hide();
+    }
+  });
 
+  $("[id^='checkbox']").change(function () {
+    var checkboxNumber = $(this).attr("id").slice(-1);
+    var chartId = "#chart" + checkboxNumber;
 
+    if ($(this).is(":checked")) {
+      $(chartId).show();
+    } else {
+      $(chartId).hide();
+    }
+  });
 
-var urlmenu = document.getElementById('sel1');
+  $("[id^='fixedcheckbox']").change(function () {
+    var checkboxNumber = $(this).attr("id").slice(-1);
+    var chartId = "#fixedchart" + checkboxNumber;
 
-urlmenu.onchange = function() {
-  document.location.href = this.value;
+    if ($(this).is(":checked")) {
+      $(chartId).show();
+    } else {
+      $(chartId).hide();
+    }
+  });
+
+  var chartColors = {
+	red: 'rgb(255, 99, 132)',
+	orange: 'rgb(255, 159, 64)',
+	yellow: 'rgb(255, 205, 86)',
+	green: 'rgb(75, 192, 192)',
+	blue: 'rgb(54, 162, 235)',
+	purple: 'rgb(153, 102, 255)',
+	grey: 'rgb(201, 203, 207)',
+	pink: 'rgb(255, 192, 203)',
+	brown: 'rgb(165, 42, 42)',
+	teal: 'rgb(0, 128, 128)'
 };
 
+function randomScalingFactor() {
+	return (Math.random() > 0.5 ? 1.0 : -1.0) * Math.round(Math.random() * 1000);
+}
 
-      $('.check_box').change(function(){
-          if($('.check_box:checked').length==0){
-              $('.p_element').show();
-          }else{
-              $('.p_element').hide();
-              $('.check_box:checked').each(function(){
-                  $('#'+$(this).attr('data-ptag')).show();
-              });
+function onRefresh(chart) {
+  var now = Date.now();
+  var tenMinutesBefore = now + 10 * 60 * 1000;
+
+  $.ajax({
+    url: "./actions/getData.php",
+    dataType: 'json',
+    async: false,
+    data: { table: "SN"+(chart.id+1), time: now},
+    success: function(data) {
+      // var newdate = '';
+      // $.each((data), function(key, value){
+      //   newChart.options.data[0].dataPoints.push({label: value[0], y: parseInt(value[1])});
+      //   newdate = value[2];
+      // });
+      chart.data.datasets.forEach(function(dataset) {
+        if (data == 0) {
+          var addvalue = 0;
+        } else {
+          var addvalue = data[0][1];
+        }
+        dataset.data.push({
+          x: new Date(now),
+          y: 10 + parseInt(addvalue)
+        });
+      });
+    }
+  });
+
+  // chart.data.datasets.forEach(function(dataset) {
+  //   dataset.data.push({
+  //     x: new Date(now),
+  //     y: randomScalingFactor()
+  //   });
+  // });
+}
+
+var color = Chart.helpers.color;
+function createConfig(sensorLabel, borderColor) {
+    return {
+        type: 'line',
+        data: {
+            datasets: [{
+                label: sensorLabel,
+                backgroundColor: color(chartColors.red).alpha(0.5).rgbString(),
+                borderColor: borderColor,
+                fill: false,
+                lineTension: 0,
+                borderDash: [8, 4],
+                data: []
+            }]
+        },
+        options: {
+          title: {
+            display: true,
+            text: 'Select Sensor'
+          },
+          scales: {
+            xAxes: [{
+              type: 'time',
+              realtime: {
+                duration: 20000,
+                refresh: 3000,
+                delay: 3000,
+                onRefresh: onRefresh
+              },
+            }],
+            yAxes: [{
+              type: 'linear',
+              display: true,
+              // ticks: {
+              //     min: 10, // minimum value
+              //     max: 30 // maximum value
+              // },
+              scaleLabel: {
+                display: true,
+                labelString: 'value'
+              }
+            }],
+          },
+          tooltips: {
+            mode: 'nearest',
+            intersect: false
+          },
+          hover: {
+            mode: 'nearest',
+            intersect: false
+          },
+          pan: {
+            enabled: true,
+            mode: 'x',
+            rangeMax: {
+              x: 4000
+            },
+            rangeMin: {
+              x: 0
+            }
+          },
+          zoom: {
+            enabled: true,
+            mode: 'x',
+            rangeMax: {
+              x: 20000
+            },
+            rangeMin: {
+              x: 1000
+            }
           }
+		    }
+    };
+}
+var config1 = createConfig('Sensor1', chartColors.red);
+var config2 = createConfig('Sensor2', chartColors.orange);
+var config3 = createConfig('Sensor3', chartColors.yellow);
+var config4 = createConfig('Sensor4', chartColors.green);
+var config5 = createConfig('Sensor5', chartColors.blue);
+var config6 = createConfig('Sensor6', chartColors.purple);
+var config7 = createConfig('Sensor7', chartColors.grey);
+var config8 = createConfig('Sensor8', chartColors.pink);
+var config9 = createConfig('Sensor9', chartColors.brown);
+var config10 = createConfig('Sensor10', chartColors.teal);
 
-      });
-
-      for(var i=1; i<=10; i++) {
-          $('#datetimepicker_'+i).datetimepicker({format: 'Y-m-d H:i'});
-          $('#datetimepicker_1_'+i).datetimepicker({format: 'Y-m-d H:i'});
-      }
-
-      $(document).on('click','.dateSubmit', function(e) {
-        e.preventDefault();
-
-        var dateID = $(this).attr('id');
-        dateID = dateID.charAt(dateID.length -1 );
-
-        console.log(dateID);
-
-        var startDate = $('#datetimepicker_'+dateID).val();
-        var endDate = $('#datetimepicker_1_'+dateID).val();
-
-        console.log(startDate);
-        console.log(endDate);
-
-        updateChart('SN'+dateID, 'chart'+dateID, startDate, endDate  );
-        $('#myModal'+dateID).modal('toggle');
-
-      });
-
-      $(document).on('click','.yaxisSubmit', function(e) {
-        e.preventDefault();
-
-        var dateID = $(this).attr('id');
-        dateID = dateID.charAt(dateID.length -1 );
-
-        console.log(dateID);
-
-        var from = $('#from_'+dateID).val();
-        var to = $('#to_'+dateID).val();
-
-        console.log(from);
-        console.log(to);
-
-        updateValueChart('SN'+dateID, 'chart'+dateID, from, to  );
-        $('#myyaxisModal'+dateID).modal('toggle');
-
-      });
-
-
-
-      	function updateChart(tableName , chartName , startDate, endDate) {
-
-            var chartID = chartName.charAt(chartName.length -1 );
-            var newChart = chartName;
-            newChart = new CanvasJS.Chart("chartContainer"+chartID, {
-              theme: "light2", // "light1", "light2", "dark1", "dark2"
-              animationEnabled: true,
-              zoomEnabled: true,
-              title: {
-                text: "Sensor "+chartID
-              },
-              axisY: {
-                title: "Value",
-                minimum: 0,
-                maximum: 500,
-                interval: 50
-              },
-            data: [{
-                type: "line",
-                dataPoints: []
-              }]
-            });
-
-
-            $.ajax({
-            url: "./actions/getData.php",
-            dataType: 'json',
-            async: false,
-            data: { table: tableName, startDate: startDate, endDate: endDate},
-            success: function(data) {
-              if(data == '0') {
-                alert('No Data Found');
-              }
-              var newdate = '';
-              newChart.options.data[0].dataPoints = [];
-              $.each((data), function(key, value){
-                newChart.options.data[0].dataPoints.push({label: value[0], y: parseInt(value[1])});
-                newdate = value[2];
-              });
-
-              newChart.render();
-              newChart.axisX[0].set("title", newdate, true);
+function createFixedConfig(sensorLabel, borderColor) {
+    return {
+        type: 'line',
+        data: {
+            labels: ['2022-01-01T00:00:00', '2022-01-02T00:00:00', '2022-01-03T00:00:00', '2022-01-04T00:00:00', '2022-01-05T00:00:00', '2022-01-06T00:00:00'],
+            datasets: [{
+                label: sensorLabel,
+                backgroundColor: color(chartColors.red).alpha(0.5).rgbString(),
+                borderColor: borderColor,
+                fill: false,
+                lineTension: 0,
+                borderDash: [8, 4],
+                data: [10, 20, 30, 25, 40, 35]
+            }]
+        },
+        options: {
+          title: {
+            display: true,
+            text: 'Select Sensor'
+          },
+          tooltips: {
+            mode: 'nearest',
+            intersect: false
+          },
+          hover: {
+            mode: 'nearest',
+            intersect: false
+          },
+          pan: {
+            enabled: true,
+            mode: 'x',
+            rangeMax: {
+              x: 4000
+            },
+            rangeMin: {
+              x: 0
             }
-          });
-
-
-
-        }
-
-        function updateValueChart(tableName , chartName , from, to) {
-
-            console.log(typeof from);
-            var chartID = chartName.charAt(chartName.length -1 );
-            var newChart = chartName;
-            newChart = new CanvasJS.Chart("chartContainer"+chartID, {
-              theme: "light2", // "light1", "light2", "dark1", "dark2"
-              animationEnabled: true,
-              zoomEnabled: true,
-              title: {
-                text: "Sensor "+chartID
-              },
-              axisY: {
-                title: "Value",
-                minimum: parseInt(from),
-                maximum: parseInt(to),
-                interval: 50
-              },
-            data: [{
-                type: "line",
-                dataPoints: []
-              }]
-            });
-
-
-            $.ajax({
-            url: "./actions/getData.php",
-            dataType: 'json',
-            async: false,
-            data: { table: tableName, from: from, to: to},
-            success: function(data) {
-              if(data == '0') {
-                alert('No Data Found');
-              }
-              var newdate = '';
-              // newChart.options.data[0].dataPoints = [];
-              $.each((data), function(key, value){
-                newChart.options.data[0].dataPoints.push({label: value[0], y: parseInt(value[1])});
-                newdate = value[2];
-              });
-
-              newChart.render();
-              // newChart.axisX[0].set("title", newdate, true);
-
-              console.log(data);
+          },
+          zoom: {
+            enabled: true,
+            mode: 'x',
+            rangeMax: {
+              x: 20000
+            },
+            rangeMin: {
+              x: 1000
             }
-          });
+          }
+		    }
+    };
+}
+var fixedconfig1 = createFixedConfig('Sensor1', chartColors.red);
+var fixedconfig2 = createFixedConfig('Sensor2', chartColors.orange);
+var fixedconfig3 = createFixedConfig('Sensor3', chartColors.yellow);
+var fixedconfig4 = createFixedConfig('Sensor4', chartColors.green);
+var fixedconfig5 = createFixedConfig('Sensor5', chartColors.blue);
+var fixedconfig6 = createFixedConfig('Sensor6', chartColors.purple);
+var fixedconfig7 = createFixedConfig('Sensor7', chartColors.grey);
+var fixedconfig8 = createFixedConfig('Sensor8', chartColors.pink);
+var fixedconfig9 = createFixedConfig('Sensor9', chartColors.brown);
+var fixedconfig10 = createFixedConfig('Sensor10', chartColors.teal);
 
+function createCharts() {
+    var chartElements = document.querySelectorAll('[id^="myChart"]');
+    chartElements.forEach(function(element, index) {
+        var ctx = element.getContext('2d');
+        window['myChart' + (index + 1)] = new Chart(ctx, window['config' + (index + 1)]);
+    });
+}
 
+function createfixedCharts() {
+    var chartElements = document.querySelectorAll('[id^="myfixedChart"]');
+    chartElements.forEach(function(element, index) {
+        var ctx = element.getContext('2d');
+        window['myfixedChart' + (index + 1)] = new Chart(ctx, window['fixedconfig' + (index + 1)]);
+    });
+}
 
-        }
-
-
-
-      	}
-
-
-
+document.addEventListener('DOMContentLoaded', function() {
+    createCharts();
+    createfixedCharts();
+});
 
 	// setInterval(function(){updateChart()}, 1000);
 </script>
