@@ -1,0 +1,119 @@
+[06-Jun-2022 02:40:09 UTC] PHP Fatal error:  Uncaught Error: Call to a member function fetch_assoc() on bool in /home/ataulbaricp/public_html/sensor/routes/admin.php:42
+Stack trace:
+#0 {main}
+  thrown in /home/ataulbaricp/public_html/sensor/routes/admin.php on line 42
+[06-Jun-2022 02:40:25 UTC] PHP Fatal error:  Uncaught Error: Call to a member function fetch_assoc() on bool in /home/ataulbaricp/public_html/sensor/routes/admin.php:42
+Stack trace:
+#0 {main}
+  thrown in /home/ataulbaricp/public_html/sensor/routes/admin.php on line 42
+[06-Jun-2022 02:40:32 UTC] PHP Fatal error:  Uncaught Error: Call to a member function fetch_assoc() on bool in /home/ataulbaricp/public_html/sensor/routes/admin.php:42
+Stack trace:
+#0 {main}
+  thrown in /home/ataulbaricp/public_html/sensor/routes/admin.php on line 42
+[06-Jun-2022 02:41:05 UTC] PHP Fatal error:  Uncaught Error: Call to a member function fetch_assoc() on bool in /home/ataulbaricp/public_html/sensor/routes/admin.php:42
+Stack trace:
+#0 {main}
+  thrown in /home/ataulbaricp/public_html/sensor/routes/admin.php on line 42
+[06-Jun-2022 02:42:29 UTC] PHP Fatal error:  Uncaught Error: Call to a member function fetch_assoc() on bool in /home/ataulbaricp/public_html/sensor/routes/admin.php:45
+Stack trace:
+#0 {main}
+  thrown in /home/ataulbaricp/public_html/sensor/routes/admin.php on line 45
+[06-Jun-2022 02:42:50 UTC] PHP Fatal error:  Uncaught Error: Call to a member function fetch_assoc() on bool in /home/ataulbaricp/public_html/sensor/routes/admin.php:45
+Stack trace:
+#0 {main}
+  thrown in /home/ataulbaricp/public_html/sensor/routes/admin.php on line 45
+[06-Jun-2022 02:43:32 UTC] PHP Fatal error:  Uncaught Error: Call to a member function fetch_assoc() on bool in /home/ataulbaricp/public_html/sensor/routes/admin.php:45
+Stack trace:
+#0 {main}
+  thrown in /home/ataulbaricp/public_html/sensor/routes/admin.php on line 45
+[06-Jun-2022 02:43:57 UTC] PHP Fatal error:  Uncaught Error: Call to a member function fetch_assoc() on bool in /home/ataulbaricp/public_html/sensor/routes/admin.php:46
+Stack trace:
+#0 {main}
+  thrown in /home/ataulbaricp/public_html/sensor/routes/admin.php on line 46
+[06-Jun-2022 03:28:24 UTC] PHP Notice:  Undefined index: auth_result in /home/ataulbaricp/public_html/sensor/routes/layouts/header.php on line 2
+[06-Jun-2022 03:28:24 UTC] PHP Notice:  Undefined index: user_role in /home/ataulbaricp/public_html/sensor/routes/layouts/nav.php on line 17
+[06-Jun-2022 13:01:14 UTC] PHP Notice:  Undefined index: auth_result in /home/ataulbaricp/public_html/sensor/routes/layouts/header.php on line 2
+[06-Jun-2022 13:01:14 UTC] PHP Notice:  Undefined index: user_role in /home/ataulbaricp/public_html/sensor/routes/reports.php on line 4
+[06-Jun-2022 13:01:14 UTC] PHP Notice:  Undefined index: user_role in /home/ataulbaricp/public_html/sensor/routes/layouts/nav.php on line 17
+[09-Jun-2022 13:04:14 UTC] PHP Notice:  Undefined index: auth_result in /home/ataulbaricp/public_html/sensor/routes/layouts/header.php on line 2
+[09-Jun-2022 13:04:14 UTC] PHP Notice:  Undefined index: user_role in /home/ataulbaricp/public_html/sensor/routes/reports.php on line 4
+[09-Jun-2022 13:04:14 UTC] PHP Notice:  Undefined index: user_role in /home/ataulbaricp/public_html/sensor/routes/layouts/nav.php on line 17
+[12-Jun-2022 00:23:45 UTC] PHP Notice:  Undefined index: auth_result in /home/ataulbaricp/public_html/sensor/routes/layouts/header.php on line 2
+[12-Jun-2022 00:23:45 UTC] PHP Notice:  Undefined index: user_role in /home/ataulbaricp/public_html/sensor/routes/reports.php on line 4
+[12-Jun-2022 00:23:45 UTC] PHP Notice:  Undefined index: user_role in /home/ataulbaricp/public_html/sensor/routes/layouts/nav.php on line 17
+[23-Jun-2022 19:36:00 UTC] PHP Fatal error:  Uncaught Error: Call to a member function fetch_assoc() on bool in /home/ataulbaricp/public_html/sensor/routes/admin.php:42
+Stack trace:
+#0 {main}
+  thrown in /home/ataulbaricp/public_html/sensor/routes/admin.php on line 42
+[23-Jun-2022 19:36:27 UTC] PHP Fatal error:  Uncaught Error: Call to a member function fetch_assoc() on bool in /home/ataulbaricp/public_html/sensor/routes/admin.php:42
+Stack trace:
+#0 {main}
+  thrown in /home/ataulbaricp/public_html/sensor/routes/admin.php on line 42
+[23-Jun-2022 23:48:46 UTC] PHP Fatal error:  Uncaught Error: Call to a member function fetch_assoc() on bool in /home/ataulbaricp/public_html/sensor/routes/admin.php:42
+Stack trace:
+#0 {main}
+  thrown in /home/ataulbaricp/public_html/sensor/routes/admin.php on line 42
+[23-Jun-2022 23:48:55 UTC] PHP Fatal error:  Uncaught Error: Call to a member function fetch_assoc() on bool in /home/ataulbaricp/public_html/sensor/routes/admin.php:42
+Stack trace:
+#0 {main}
+  thrown in /home/ataulbaricp/public_html/sensor/routes/admin.php on line 42
+[24-Jun-2022 04:55:06 UTC] PHP Notice:  Undefined index: auth_result in /home/ataulbaricp/public_html/sensor/routes/layouts/header.php on line 2
+[24-Jun-2022 04:55:06 UTC] PHP Notice:  Undefined index: user_role in /home/ataulbaricp/public_html/sensor/routes/layouts/nav.php on line 17
+[24-Jun-2022 04:55:06 UTC] PHP Fatal error:  Uncaught Error: Call to a member function fetch_assoc() on bool in /home/ataulbaricp/public_html/sensor/routes/admin.php:42
+Stack trace:
+#0 {main}
+  thrown in /home/ataulbaricp/public_html/sensor/routes/admin.php on line 42
+[24-Jun-2022 16:06:48 UTC] PHP Fatal error:  Uncaught Error: Call to a member function fetch_assoc() on bool in /home/ataulbaricp/public_html/sensor/routes/admin.php:42
+Stack trace:
+#0 {main}
+  thrown in /home/ataulbaricp/public_html/sensor/routes/admin.php on line 42
+[25-Jun-2022 21:25:40 UTC] PHP Fatal error:  Uncaught Error: Call to a member function fetch_assoc() on bool in /home/ataulbaricp/public_html/sensor/routes/admin.php:42
+Stack trace:
+#0 {main}
+  thrown in /home/ataulbaricp/public_html/sensor/routes/admin.php on line 42
+[25-Jun-2022 21:25:56 UTC] PHP Fatal error:  Uncaught Error: Call to a member function fetch_assoc() on bool in /home/ataulbaricp/public_html/sensor/routes/admin.php:42
+Stack trace:
+#0 {main}
+  thrown in /home/ataulbaricp/public_html/sensor/routes/admin.php on line 42
+[30-Jun-2022 03:49:56 UTC] PHP Fatal error:  Uncaught Error: Call to a member function fetch_assoc() on bool in /home/ataulbaricp/public_html/sensor/routes/admin.php:42
+Stack trace:
+#0 {main}
+  thrown in /home/ataulbaricp/public_html/sensor/routes/admin.php on line 42
+[30-Jun-2022 03:50:03 UTC] PHP Fatal error:  Uncaught Error: Call to a member function fetch_assoc() on bool in /home/ataulbaricp/public_html/sensor/routes/admin.php:42
+Stack trace:
+#0 {main}
+  thrown in /home/ataulbaricp/public_html/sensor/routes/admin.php on line 42
+[30-Jun-2022 03:50:28 UTC] PHP Fatal error:  Uncaught Error: Call to a member function fetch_assoc() on bool in /home/ataulbaricp/public_html/sensor/routes/admin.php:42
+Stack trace:
+#0 {main}
+  thrown in /home/ataulbaricp/public_html/sensor/routes/admin.php on line 42
+[30-Jun-2022 03:50:32 UTC] PHP Fatal error:  Uncaught Error: Call to a member function fetch_assoc() on bool in /home/ataulbaricp/public_html/sensor/routes/admin.php:42
+Stack trace:
+#0 {main}
+  thrown in /home/ataulbaricp/public_html/sensor/routes/admin.php on line 42
+[30-Jun-2022 03:50:34 UTC] PHP Fatal error:  Uncaught Error: Call to a member function fetch_assoc() on bool in /home/ataulbaricp/public_html/sensor/routes/admin.php:42
+Stack trace:
+#0 {main}
+  thrown in /home/ataulbaricp/public_html/sensor/routes/admin.php on line 42
+[30-Jun-2022 03:50:52 UTC] PHP Fatal error:  Uncaught Error: Call to a member function fetch_assoc() on bool in /home/ataulbaricp/public_html/sensor/routes/admin.php:42
+Stack trace:
+#0 {main}
+  thrown in /home/ataulbaricp/public_html/sensor/routes/admin.php on line 42
+[30-Jun-2022 03:54:18 UTC] PHP Fatal error:  Uncaught Error: Call to a member function fetch_assoc() on bool in /home/ataulbaricp/public_html/sensor/routes/admin.php:42
+Stack trace:
+#0 {main}
+  thrown in /home/ataulbaricp/public_html/sensor/routes/admin.php on line 42
+[01-Jul-2022 17:55:43 UTC] PHP Notice:  Undefined index: auth_result in /home/ataulbaricp/public_html/sensor/routes/layouts/header.php on line 2
+[01-Jul-2022 17:55:43 UTC] PHP Notice:  Undefined index: user_role in /home/ataulbaricp/public_html/sensor/routes/realtime.php on line 4
+[01-Jul-2022 17:55:43 UTC] PHP Notice:  Undefined index: user_role in /home/ataulbaricp/public_html/sensor/routes/layouts/nav.php on line 17
+[09-Aug-2022 10:41:00 UTC] PHP Notice:  Undefined index: auth_result in /home/ataulbaricp/public_html/sensor/routes/layouts/header.php on line 2
+[09-Aug-2022 10:41:00 UTC] PHP Notice:  Undefined index: user_role in /home/ataulbaricp/public_html/sensor/routes/realtime.php on line 4
+[09-Aug-2022 10:41:00 UTC] PHP Notice:  Undefined index: user_role in /home/ataulbaricp/public_html/sensor/routes/layouts/nav.php on line 17
+[03-Oct-2022 09:34:13 UTC] PHP Notice:  Undefined index: auth_result in /home/ataulbaricp/public_html/sensor/routes/layouts/header.php on line 2
+[03-Oct-2022 09:34:13 UTC] PHP Notice:  Undefined index: user_role in /home/ataulbaricp/public_html/sensor/routes/realtime.php on line 4
+[03-Oct-2022 09:34:13 UTC] PHP Notice:  Undefined index: user_role in /home/ataulbaricp/public_html/sensor/routes/layouts/nav.php on line 17
+[28-Dec-2022 20:11:17 America/Boise] PHP Warning:  Cannot modify header information - headers already sent by (output started at /home2/triniws6/public_html/sensor/routes/login.php:4) in /home2/triniws6/public_html/sensor/controllers/BaseController.php on line 112
+[11-Feb-2023 20:51:24 America/Boise] PHP Warning:  Cannot modify header information - headers already sent by (output started at /home2/triniws6/public_html/sensor/routes/login.php:4) in /home2/triniws6/public_html/sensor/controllers/BaseController.php on line 112
+[29-Jun-2023 12:20:20 America/Boise] PHP Warning:  Cannot modify header information - headers already sent by (output started at /home2/triniws6/public_html/sensor/routes/login.php:4) in /home2/triniws6/public_html/sensor/controllers/BaseController.php on line 112
+[29-Jun-2023 12:22:15 America/Boise] PHP Warning:  Cannot modify header information - headers already sent by (output started at /home2/triniws6/public_html/sensor/routes/login.php:4) in /home2/triniws6/public_html/sensor/controllers/BaseController.php on line 112
+[03-Jul-2023 13:05:40 America/Boise] PHP Warning:  Cannot modify header information - headers already sent by (output started at /home2/triniws6/public_html/sensor/routes/login.php:4) in /home2/triniws6/public_html/sensor/controllers/BaseController.php on line 112

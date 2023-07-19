@@ -1,0 +1,2 @@
+[12-May-2022 00:33:20 UTC] PHP Warning:  mysqli_connect(): (HY000/2003): Can't connect to MySQL server on '107.180.26.73' (111) in /home/ataulbaricp/public_html/samrs/live/plotS1/api/data.php on line 45
+[12-May-2022 00:33:20 UTC] PHP Notice:  Trying to get property of non-object in /home/ataulbaricp/public_html/samrs/live/plotS1/api/data.php on line 48
