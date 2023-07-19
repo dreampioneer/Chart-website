@@ -1,0 +1,13 @@
+{
+    "name": "smile/second-project",
+    "autoload": {
+        "psr-4": {
+            "Smile\\SecondProject\\": "src/"
+        }
+    },
+    "require": {
+        "phpmailer/phpmailer": "^6.5",
+        "mailchimp/marketing": "^3.0",
+        "twilio/sdk": "^6.30"
+    }
+}
