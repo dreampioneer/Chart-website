@@ -40,7 +40,7 @@ header("Access-Control-Allow-Methods: PUT, POST, GET, OPTIONS, DELETE");
 
 
     if(isset($_GET['time']) && $_GET['time'] != '') {
-      $sql = "select * from ".$table." WHERE timestamp BETWEEN '".$tentime."' AND '".$_GET['time']."' ";
+      $sql = "select * from ".$table." WHERE timest BETWEEN '".$tentime."' AND '".$_GET['time']."' ";
     } else {
 
       if(isset($_GET['startDate']) && isset($_GET['endDate']) && $_GET['startDate'] != '' && $_GET['endDate'] != '') {
