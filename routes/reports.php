@@ -932,7 +932,7 @@ $mysql->init_conn();
 };
 
 function randomScalingFactor() {
-	return (Math.random() > 0.5 ? 1.0 : -1.0) * Math.round(Math.random() * 1000);
+	return (Math.random() > 0.5 ? 1.0 : -1.0) * Math.round(Math.random() * 100);
 }
 
 function onRefresh(chart) {
@@ -945,11 +945,6 @@ function onRefresh(chart) {
     async: false,
     data: { table: "SN"+(chart.id+1), time: now},
     success: function(data) {
-      // var newdate = '';
-      // $.each((data), function(key, value){
-      //   newChart.options.data[0].dataPoints.push({label: value[0], y: parseInt(value[1])});
-      //   newdate = value[2];
-      // });
       chart.data.datasets.forEach(function(dataset) {
         if (data == 0) {
           var addvalue = 0;
@@ -957,8 +952,8 @@ function onRefresh(chart) {
           var addvalue = data[0][1];
         }
         dataset.data.push({
-          x: new Date(now),
-          y: 10 + parseInt(addvalue)
+          x: now,
+          y: addvalue
         });
       });
     }
@@ -994,13 +989,13 @@ function createConfig(sensorLabel, borderColor) {
           },
           scales: {
             xAxes: [{
-              type: 'time',
+              type: 'realtime',
               realtime: {
                 duration: 20000,
-                refresh: 3000,
-                delay: 3000,
+                refresh: 1000,
+                delay: 2000,
                 onRefresh: onRefresh
-              },
+              }
             }],
             yAxes: [{
               type: 'linear',
@@ -1043,7 +1038,7 @@ function createConfig(sensorLabel, borderColor) {
               x: 1000
             }
           }
-		    }
+        }
     };
 }
 var config1 = createConfig('Sensor1', chartColors.red);
