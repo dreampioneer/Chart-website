@@ -22,7 +22,7 @@
         $_SESSION['password'] = $password;
         $_SESSION['user_role'] = $row['role'];
         $_SESSION['user_email'] = $row['email'];
-        Redirect('../admin.php');
+        Redirect('../reports.php');
     } else {
         $_SESSION['auth_result'] = 'false';
         Redirect('../login.php');

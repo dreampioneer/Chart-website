@@ -11,7 +11,14 @@
                 $this->servername   = 'localhost';
                 $this->username     = 'root';
                 $this->password     = '';
-                $this->db_name      = 'triniws6_samd';
+                $this->db_name      = 'charts';
+                $this->conn_status  = false;
+            }elseif($_SERVER['HTTP_HOST'] == '192.168.1.114'){
+                // Localserver
+                $this->servername   = 'localhost';
+                $this->username     = 'root';
+                $this->password     = '';
+                $this->db_name      = 'charts';
                 $this->conn_status  = false;
             } else{
                 //  Production server
