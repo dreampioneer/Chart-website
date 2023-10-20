@@ -36,14 +36,14 @@ if ($current2 == 0) {
 //define('DB_NAME', 'samd');
 
 define('DB_HOST', 'localhost');
-define('DB_USERNAME', 'triniws6_sensor');
+define('DB_USERNAME', 'chart');
 define('DB_PASSWORD', 'Xitb?f!{^M{(');
 define('DB_NAME', 'triniws6_samd');
 
 //get connection
 //$mysqli = new mysqli(DB_HOST, DB_USERNAME, DB_PASSWORD, DB_NAME);
 //$mysqli = mysqli_connect("107.180.26.73", "orfteam", "orfproject", "samd");
-$mysqli = mysqli_connect("localhost", "triniws6_sensor", "Xitb?f!{^M{(", "triniws6_samd");
+$mysqli = mysqli_connect("localhost", "chart", "Xitb?f!{^M{(", "triniws6_samd");
 
 if (!$mysqli) {
 	die("Connection failed: " . $mysqli->error);
